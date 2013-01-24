@@ -1,8 +1,9 @@
 class GamesController < ApplicationController
     def play
-        @options = ["rock", "paper", "scissors"]
-        @computer_play = @options.shuffle.pop[:name]
-        @human_play = params[:choose]
+        if params[:choose] != nil
+          @human_play = params[:choose]
+          @game = Game.new(@human_play)
+        end
     end
 
 

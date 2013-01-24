@@ -1,51 +1,14 @@
 <h1>Rock, Paper, Scissors</h1>
-
-<% if @human_play == "rock" %>
-    <% if @computer_play == "rock" %>
-        <h2>It's a tie!</h2>
-        <a href="/rps?choose=rock"><%= image_tag("rock.jpg", :alt => "a rock") %></a>
-        <a href="/rps?choose=rock"><%= image_tag("rock.jpg", :alt => "a rock") %></a>
-    <% elsif @computer_play == "paper"%>
-        <h2>You lose!</h2>
-        <a href="/rps?choose=paper"><%= image_tag("paper.png", :alt => "a sheet of paper") %></a>
-        <a href="/rps?choose=rock"><%= image_tag("rock.jpg", :alt => "a rock") %></a>
-    <% else %>
-        <h2>You win!</h2>
-        <a href="/rps?choose=rock"><%= image_tag("rock.jpg", :alt => "a rock") %></a>
-        <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg", :alt => "a pair of scissors") %></a>
-    <% end %>
-<% elsif @human_play == "paper"%>
-    <% if @computer_play == "rock"%>
-        <h2>You win!</h2>
-        <a href="/rps?choose=paper"><%= image_tag("paper.png", :alt => "a sheet of paper") %></a>
-        <a href="/rps?choose=rock"><%= image_tag("rock.jpg", :alt => "a rock") %></a>
-    <% elsif @computer_play == "paper"%>
-        <h2>It's a tie!</h2>
-            <a href="/rps?choose=paper"><%= image_tag("paper.png", :alt => "a sheet of paper") %></a>
-            <a href="/rps?choose=paper"><%= image_tag("paper.png", :alt => "a sheet of paper") %></a>
-    <% else%>
-        <h2>You lose!</h2>
-        <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg", :alt => "a pair of scissors") %></a>
-        <a href="/rps?choose=paper"><%= image_tag("paper.png", :alt => "a rock") %></a>
-    <% end %>
-<% elsif @human_play == "scissors"%>
-    <% if @computer_play == "rock"%>
-        <h2>You lose!</h2>
-        <a href="/rps?choose=rock"><%= image_tag("rock.jpg", :alt => "a rock") %></a>
-        <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg", :alt => "a pair of scissors") %></a>
-    <% elsif @computer_play == "paper"%>
-        <h2>You win!</h2>
-        <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg", :alt => "a pair of scissors") %></a>
-        <a href="/rps?choose=paper"><%= image_tag("paper.png", :alt => "a sheet of paper") %></a>
-    <% else %>
-        <h2>It's a tie!</h2>
-        <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg", :alt => "a pair of scissors") %></a>
-        <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg", :alt => "a pair of scissors") %></a>
-    <% end %>
-<% else %>
+<% if params[:choose] == nil %>
     <h2>Let's Play! Choose One:</h2>
-    <a href="/rps?choose=rock"><%= image_tag("rock.jpg", :alt => "a rock") %></a>
-    <a href="/rps?choose=paper"><%= image_tag("paper.png", :alt => "a sheet of paper") %></a>
-    <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg", :alt => "a pair of scissors") %></a>
+    <a href="/rps?choose=rock"><%= image_tag("rock.jpg") %></a>
+    <a href="/rps?choose=paper"><%= image_tag("paper.png") %></a>
+    <a href="/rps?choose=scissors"><%= image_tag("scissors.jpg") %></a>
+<% else %>
+    <h2><%= @game.result %></h2>
+    <a href="/rps">Play Again</a><br>
+    <%= image_tag(@game.player_move[:url]) %>
+    <%= image_tag(@game.computer_move[:url]) %>
 <% end %>
+
 
